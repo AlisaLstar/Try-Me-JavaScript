@@ -1,0 +1,47 @@
+.container {
+    margin-top: 80px;
+    max-width: 800px;
+    width: 80%;
+}
+
+
+.navbar-brand, .navbar-brand:hover, .navbar-brand:active {
+    color: #e674e6;
+    text-align: center;
+
+    font-family: "Times New Roman", Times, serif;
+    font-size: large;
+      
+}
+
+.navbar-text {
+    font-family: "Times New Roman", Times, serif;
+    font-size: large;
+}
+
+.jumbotron {
+    float: center;
+    margin: 80px;
+}
+
+.nonedisplay {
+    display: none;
+}
+
+.divAlert {
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 30px;
+}
+
+.showResult {
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 30px;
+}
+
+.thankYou {
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 30px;
+}

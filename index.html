@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <title>JavaScript Coding Quiz</title>
+</head>
+<body>
+
+    <nav class="navbar fixed-top navbar-light bg-light">
+        <a class="navbar-brand" href="#">Highscores</a>
+        <span class="navbar-text">Time: 00</span>
+    </nav>
+
+    <!-- div body for code quiz -->
+    <div class="container">
+    <div class="jumbotron" id="instrPage">
+        <h1 class="display-4">JavaScript Assessment</h1>
+        <p>
+            Since you have been studying for JavaScript, now it is a time to test your understanding. 
+            JavaScript is essential for interactive front-end web development.
+            It is important to use that you understand the concepts and how to search for assistant resources when needed. 
+            You have 180 seconds to complete 4 questions. 
+            Each time you collect the wrong answer, there will be 10 seconds time deduction. 
+            Click start when you are ready.  
+            <br/>
+            Do your best! 
+        </p>
+        <!-- div title and button to start!! after user click btn #starHere then show question and 4 choices answer buttons-->
+        <button type="button" class="btn btn-success" id= "startBtn">Start Quiz</button>
+      </div> 
+
+      <!-- dispear instruction page-->
+
+
+      <!-- display questions and btn choices-->
+
+
+    <div class="jumbotron" id= "codeQuests">
+        <h2 class="display-4" id= "ansChoices"> question areas!</h1>
+        <p>
+            Hi, my name is JavaScript. When JavaScript was created, it initially had another name: “LiveScript”. 
+            But Java was very popular at that time, so it was decided that positioning a new language as a “younger brother” of Java would help.
+            But as it evolved, JavaScript became a fully independent language with its own specification called ECMAScript, and now it has no relation to Java at all.
+
+        </p>
+        <button type="button" class="btn btn-success" data-id= "0">Start Here</button>
+        <button type="button" class="btn btn-success" data-id= "1">Start Here</button>
+        <button type="button" class="btn btn-success" data-id= "2">Start Here</button>
+        <button type="button" class="btn btn-success" data-id= "3">Start Here</button>
+    </div>
+    <!--div answer -->
+     <div class="divAlert" id="divAlertAns">Your answer is </div>
+
+
+
+    <!-- after finished or timeout, questions dissapear and result block display -->
+    <div class="showResult" id="totalScores">
+        <h3>Finished</h3>
+        <p>Total scores is:</p>
+        <h4 id="scoreResult">points</h4>
+        <form id="userInitial">
+            <div class="form-group">
+                <label for="inputUser">Please enter your initials</label>
+                <input type="text" class="form-control" id="inputInitial" placeholder="Your Initials!">
+            </div>
+        <button type="submit" class="btn btn-primary" id="sumitBtn">Submit</button>
+        </form>
+    </div>
+
+    <!-- submitpage dissapear and thank you for submit display -->
+    <div class="thankYou" id="wellDone">
+        <h5 class="thankYou">Well Done!</h5>
+        <p>Thank you for submitting your work.</p>
+    </div>
+
+
+    </div>
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>
+
+
+
+
+
+
