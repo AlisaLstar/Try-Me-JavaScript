@@ -90,7 +90,7 @@ var resultUserEl = document.getElementById("divAlertAns");
 //writing functions
 
 function startBtn() {
-  console.log("startbutton");
+  // console.log("startbutton");
   startQuiz();
   getQuestion();
   startTimer();
@@ -127,48 +127,85 @@ function startQuiz() {
 }
 
 
-function getQuestion() {
-    if (availableQuestions.length == 0) {
-        localStorage.setItem("latestScore", score);
-        return window.location.assign("endGame.html")
-    }
-  codeQuestionsEl.style.display = "block";
-  var questionChoicesEl = document.getElementById("questionChoices");
-  // document.querySelector("#questionChoices").textContent = questions.questions;
+// function getQuestion() {
+//     if (availableQuestions.length == 0) {
+//         localStorage.setItem("latestScore", score);
+//         return window.location.assign("endGame.html")
+//     }
+//   codeQuestionsEl.style.display = "block";
+//   var questionChoicesEl = document.getElementById("questionChoices");
+//   // document.querySelector("#questionChoices").textContent = questions.questions;
 
-//   questionsCounter++;
-  var random = Math.floor(Math.random() * questions.length);
-      currentQuestion = questions[random];
+// //   questionsCounter++;
+//   var random = Math.floor(Math.random() * questions.length);
+//       currentQuestion = questions[random];
+//   questionChoicesEl.textContent = currentQuestion.questions;
+
+//   for (var i = 0; i < currentQuestion.answer.length; i++) {
+//     var buttonEl = document.getElementById(i);
+//    buttonEl.textContent=currentQuestion.answer[i].text;
+//    buttonEl.addEventListener("click", selectAnswer(i));
+//   }
+//   //  questions.splice(random, 1);
+// //   acceptingAnswers = true;
+// }
+
+// function selectAnswer(i){
+//   console.log("selectAnswer")
+//   return function selectAnswerHandler() {
+//     console.log (currentQuestion.answer[i]);
+//     if(currentQuestion.answer[i].result === true){
+//       console.log(true);
+//       for (var i = 0; i < currentQuestion.answer.length; i++) {
+//         var buttonEl = document.getElementById(i);
+//        buttonEl.removeEventListener("click", selectAnswerHandler);
+//       }
+//       questions.splice(i, 1);
+//       getQuestion();
+//     } else {
+//       console.log(false);
+//       secondElapsed += 10;
+//     }
+//   }    
+// }
+
+//editted 
+function getQuestion() {
+  if (availableQuestions.length == 0) {
+      localStorage.setItem("latestScore", score);
+      return window.location.assign("endGame.html")
+  }
+
+  codeQuestionsEl.style.display = "block";
+
+  var questionChoicesEl = document.getElementById("questionChoices");
+  var questionIndex = Math.floor(Math.random() * questions.length);
+  
+
+  currentQuestion = questions[questionIndex];
   questionChoicesEl.textContent = currentQuestion.questions;
 
   for (var i = 0; i < currentQuestion.answer.length; i++) {
-    var buttonEl = document.getElementById(i);
-   buttonEl.textContent=currentQuestion.answer[i].text;
-   buttonEl.addEventListener("click", selectAnswer(i));
+      var oldButtonEl = document.getElementById(i);
+      var newButtonEl = oldButtonEl.cloneNode(true);
+
+      oldButtonEl.parentNode.replaceChild(newButtonEl, oldButtonEl);
+
+      newButtonEl.textContent = currentQuestion.answer[i].text;
+      newButtonEl.addEventListener("click", selectAnswer(questionIndex, i));
   }
-  //  questions.splice(random, 1);
-//   acceptingAnswers = true;
 }
 
-function selectAnswer(i){
-  console.log("selectAnswer")
-  return function selectAnswerHandler() {
-    console.log (currentQuestion.answer[i]);
-    if(currentQuestion.answer[i].result === true){
-      console.log(true);
-      for (var i = 0; i < currentQuestion.answer.length; i++) {
-        var buttonEl = document.getElementById(i);
-       buttonEl.removeEventListener("click", selectAnswerHandler);
+function selectAnswer(questionIndex, answerIndex) {
+  return function onSelectAnswerClick () {
+      if (currentQuestion.answer[answerIndex].result) {
+          questions.splice(questionIndex, 1);
+          getQuestion();
+      } else {
+          secondElapsed += 10;
       }
-      questions.splice(i, 1);
-      getQuestion();
-    } else {
-      console.log(false);
-      secondElapsed += 10;
-    }
-  }    
+  }
 }
-
 
 // var availableQuestions= [...questions];
 
