@@ -2,6 +2,9 @@
     margin-top: 80px;
     max-width: 800px;
     width: 80%;
+    border-radius: 5px;
+    background-color:white;
+    padding: 10px;
 }
 
 
@@ -21,7 +24,18 @@
 
 .jumbotron {
     float: center;
-    margin: 30px;
+    margin: 10px;
+}
+
+.btn-group {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 20px;
+    margin: 10px;
+}
+.btn btn-success {
+    border: 1px;
+    gap: 5px;
 }
 
 .noneDisplay {
