@@ -56,12 +56,16 @@ var startButtonEl = document.getElementById("startButtonEl");
 var submitBtnEl = document.getElementById("thankYou");
 var questionIndex = 0;
 var questionCounter = 0;
-var acceptingAnswer = true;
+var acceptingAnswer = false;
 var correctAnswer = 10;
 var time = 120;
 var score = 0;
 var secondElapsed;
+<<<<<<< HEAD
 var toDisplayAnswer = document.querySelectorAll("#ansChoices");
+=======
+var timer = addEventListener("#click", startBtn);
+>>>>>>> ea6d35368c7105259ae8ce27b827557fa6a29ffa
 var startQuizEl = document.getElementById("instrPage");
 var codeQuestionsEl = document.getElementById("codeQuests");
 var resultUserEl = document.getElementById("divAlertAns");
@@ -115,6 +119,7 @@ function getQuestion() {
     var questionChoicesEl = document.getElementById("questionChoices");
     questionIndex = Math.floor(Math.random() * questions.length);
 
+<<<<<<< HEAD
     currentQuestion = questions[questionIndex];
     questionChoicesEl.textContent = currentQuestion.questions;
 
@@ -124,10 +129,22 @@ function getQuestion() {
       buttonEl.textContent = currentQuestion.answer[i].text;
       buttonEl.addEventListener("click", selectAnswer);
     }
+=======
+  for (var i = 0; i < 4; i++) {
+    var oldButtonEl = document.getElementById("~");
+    // var newButtonEl = oldButtonEl.cloneNode(true);
+
+    // oldButtonEl.parentNode.replaceChild(newButtonEl, oldButtonEl);
+
+    oldButtonEl.textContent = currentQuestion.answer[i].text;
+    newButtonEl.addEventListener("click", selectAnswer(questionIndex, i));
+  
+>>>>>>> ea6d35368c7105259ae8ce27b827557fa6a29ffa
   }
 }
 
 //prompt correct or incorrect answer
+<<<<<<< HEAD
 function selectAnswer(event) {
   var buttenClicked = event.target;
   var answerIndex = parseInt(buttenClicked.getAttribute("id"));
@@ -144,6 +161,25 @@ function selectAnswer(event) {
   questions.splice(questionIndex, 1);
   questionIndex++;
   getQuestion();
+=======
+function selectAnswer(questionIndex, answerIndex) {
+  // return function onSelectAnswerClick() {
+    if (currentQuestion.answer[answerIndex].result) {
+     var answerText = document.getElementById("divAlertAns");
+   
+      // score ++;
+      answerText = "Correct!";
+      
+    } else {
+      answerText = "Wrong!";
+      secondElapsed += 10;
+     
+    }
+    // questions.splice(questionIndex, 1);
+    questionsIndex++;
+    getQuestion();
+  // };
+>>>>>>> ea6d35368c7105259ae8ce27b827557fa6a29ffa
 }
 
 //timeout if there is no more questions
@@ -195,6 +231,11 @@ function submitInitials(event) {
 }
 
 
+<<<<<<< HEAD
 //add event listener
+=======
+// resultUserEl.style.display = "none";
+codeQuestionsEl.style.display = "none";
+>>>>>>> ea6d35368c7105259ae8ce27b827557fa6a29ffa
 startButtonEl.addEventListener("click", startBtn);
 sumitBtn.addEventListener("click", submitInitials);
