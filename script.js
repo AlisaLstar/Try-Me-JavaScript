@@ -9,9 +9,7 @@ var questions = [
       { text: "Decision", result: false },
       { text: "Input", result: false },
     ],
-  },
-
-  {
+  }, {
     questions: "Which one is not representing the use of variables?",
     answer: [
       { text: "Numbers", result: false },
@@ -19,9 +17,7 @@ var questions = [
       { text: "Data", resultt: false },
       { text: "Names", result: false },
     ],
-  },
-
-  {
+  }, {
     questions: "When asking a function to perform its task, it is known as?",
     answer: [
       { text: "Calling the function", result: true },
@@ -29,9 +25,7 @@ var questions = [
       { text: "Rename the function", result: false },
       { text: "Perform the function", result: true },
     ],
-  },
-
-  {
+  }, {
     questions: "What is not part of three groups of built-in objects?",
     answer: [
       { text: "Global JavaScipt Objects", result: false },
@@ -39,9 +33,7 @@ var questions = [
       { text: "Browser Object Model", result: false },
       { text: "Double Three Objects", result: true },
     ],
-  },
-
-  {
+  }, {
     questions: "Which is not an object represents basic data type of Global JavaScript Objects?",
     answer: [
       { text: "String", result: false },
@@ -49,9 +41,8 @@ var questions = [
       { text: "Document", result: true },
       { text: "Boolean", result: false },
     ],
-  },
-  {  
-    questions:"What function do you use to change string to upercase characters?",
+  }, {
+    questions: "What function do you use to change string to upercase characters?",
     answer: [
       { text: "toLowerCase", result: false },
       { text: "Capital", result: false },
@@ -62,24 +53,20 @@ var questions = [
 ];
 
 var startButtonEl = document.getElementById("startButtonEl");
-var currentQuestion;
-var availableQuestions = [...questions];
-var questionsIndex = 0;
+var submitBtnEl = document.getElementById("thankYou");
+var questionIndex = 0;
 var questionCounter = 0;
 var acceptingAnswer = true;
 var correctAnswer = 10;
 var time = 120;
-var scores = 0;
+var score = 0;
 var secondElapsed;
 var toDisplayAnswer = document.querySelectorAll("#ansChoices");
-var timer = addEventListener("#click", startBtn);
 var startQuizEl = document.getElementById("instrPage");
 var codeQuestionsEl = document.getElementById("codeQuests");
 var resultUserEl = document.getElementById("divAlertAns");
-// var timeDisplay = document.getElementById("timeDisplay")
 
 //scores located
-
 if (localStorage.getItem("localHighScores")) {
   scoresArray = JSON.parse(localStorage.getItem("localHighScores"));
 } else {
@@ -89,7 +76,9 @@ if (localStorage.getItem("localHighScores")) {
 //writing functions
 function startBtn() {
   // console.log("startbutton");
-  startQuiz();
+  startQuizEl.classList.add("d-none");
+  codeQuestionsEl.classList.remove("d-none");
+  document.getElementById("thankYou").classList.add("d-none");
   getQuestion();
   startTimer();
 }
@@ -104,8 +93,6 @@ function startTimer() {
     if (secondElapsed >= totalSeconds) {
       console.log("time" + 00);
       clearInterval(timerInterval);
-      return; 
-      resultPage();
     } else {
       var secondLeft = totalSeconds - secondElapsed;
       var minute = Math.floor(secondLeft / 60);
@@ -116,66 +103,54 @@ function startTimer() {
   }, 1000);
 }
 
-
-
-//display introduction
-function startQuiz() {
-  startQuizEl.style.display = "none";
-}
-
 acceptingAnswers = true;
+
 //generating questions
 function getQuestion() {
-  if (availableQuestions.length == 0) {
-    localStorage.setItem("highScore", score);
-    return window.location.assign("resultPage.html");
-  }
+  if (questions.length === 0) {
+    document.getElementById("codeQuests").classList.add("d-none");
+    document.getElementById("myScore").textContent = score;
+    document.getElementById("totalScores").classList.remove("d-none");
+  } else {
+    var questionChoicesEl = document.getElementById("questionChoices");
+    questionIndex = Math.floor(Math.random() * questions.length);
 
-  codeQuestionsEl.style.display = "block";
+    currentQuestion = questions[questionIndex];
+    questionChoicesEl.textContent = currentQuestion.questions;
 
-  var questionChoicesEl = document.getElementById("questionChoices");
-  var questionIndex = Math.floor(Math.random() * questions.length);
+    for (var i = 0; i < currentQuestion.answer.length; i++) {
+      var buttonEl = document.getElementById(i);
 
-  currentQuestion = questions[questionIndex];
-  questionChoicesEl.textContent = currentQuestion.questions;
-
-  for (var i = 0; i < currentQuestion.answer.length; i++) {
-    var oldButtonEl = document.getElementById(i);
-    var newButtonEl = oldButtonEl.cloneNode(true);
-
-    oldButtonEl.parentNode.replaceChild(newButtonEl, oldButtonEl);
-
-    newButtonEl.textContent = currentQuestion.answer[i].text;
-    newButtonEl.addEventListener("click", selectAnswer(questionIndex, i));
-  
+      buttonEl.textContent = currentQuestion.answer[i].text;
+      buttonEl.addEventListener("click", selectAnswer);
+    }
   }
 }
 
 //prompt correct or incorrect answer
-function selectAnswer(questionIndex, answerIndex) {
-  return function onSelectAnswerClick() {
-    if (currentQuestion.answer[answerIndex].result) {
-     var answerText = document.getElementById("divAlertAns");
-   
-      score ++;
-      answerText = "Correct!";
-      
-    } else {
-      answerText = "Wrong!";
-      secondElapsed += 10;
-     
-    }
-    // questions.splice(questionIndex, 1);
-    questionsIndex++;
-    getQuestion();
-  };
+function selectAnswer(event) {
+  var buttenClicked = event.target;
+  var answerIndex = parseInt(buttenClicked.getAttribute("id"));
+
+  if (questions[questionIndex].answer[answerIndex].result) {
+    // var answerText = document.getElementById("divAlertAns");
+
+    score++;
+    alert("Correct!");
+  } else {
+    alert("Wrong!");
+    secondElapsed += 10;
+  }
+  questions.splice(questionIndex, 1);
+  questionIndex++;
+  getQuestion();
 }
 
 //timeout if there is no more questions
-function setTimeout(){
-  if (availableQuestions === 0) {
-    return ("resultPage.html")
-  } 
+function setTimeout() {
+  // if (questions.length === 0) {
+  //   return ("resultPage.html")
+  // }
 }
 
 //show resultpage and score 
@@ -184,42 +159,42 @@ function resultPage() {
 
   if (time != 0) {
     document.getElementById("scoreResult").textContent = time;
-   
-} else {
-    document.getElementById("scoreResult").textContent = "N/A";
-}
-}
-
-//submit userInitials
-var userInitials = "";
-function submitInitials(event) {
-  event.preventDefault();
-  if (userInitials.value.trim() == '') {
-    var initialEl = document.getElementById("inputInitial");
-    if (initialEl.style !="display:block;") {
-        initialEl.style = "display:block;";
-
-          setTimeout(function () {
-              alertBoxDiv.style = "display: none;";
-          }, 1000);
-      }
-      return;
   } else {
-      var newHighScore = {
-          initials: playerInitials.value.toUpperCase().trim(),
-          score: time
-      };
-      scoresArray.push(newHighScore);
-      scoresArray.sort(function (a, b) { return b.score - a.score });
-      localStorage.setItem("localHighScores", JSON.stringify(scoresArray));
-      window.location.href = "resultPage.html";
+    document.getElementById("scoreResult").textContent = "N/A";
   }
 }
 
+//submit userInitials
+function submitInitials(event) {
+  event.preventDefault();
+  // document.getElementById("thankYou").classList.add("d-none");
+
+  var userInitials = document.getElementById("userInitials").value;
+
+  if (userInitials.trim() == '') {
+    var initialEl = document.getElementById("inputInitial");
+
+    if (initialEl.style != "display:block;") {
+      initialEl.style = "display:block;";
+
+      setTimeout(function () {
+        alertBoxDiv.style = "display: none;";
+      }, 1000);
+    }
+  } else {
+    var newHighScore = {
+      initials: userInitials,
+      score: score
+    };
+
+    scoresArray.push(newHighScore);
+    scoresArray.sort(function (a, b) { return b.score - a.score });
+    localStorage.setItem("localHighScores", JSON.stringify(scoresArray));
+  }
+  
+}
+
+
 //add event listener
-
-resultUserEl.style.display = "none";
-codeQuestionsEl.style.display = "none";
 startButtonEl.addEventListener("click", startBtn);
-
-
+sumitBtn.addEventListener("click", submitInitials);
