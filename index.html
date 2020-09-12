@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="./style.css">
     <title>JavaScript Coding Quiz</title>
 </head>
+
 <body>
 
     <nav class="navbar fixed-top navbar-light bg-light">
@@ -19,45 +20,52 @@
 
     <!-- div body for code quiz -->
     <div class="container">
-    <div class="jumbotron" id="instrPage">
-        <h1 class="display-4">JavaScript Assessment</h1>
-        <p>
-            Since you have been studying for JavaScript, now it is a time to test your understanding. 
-            JavaScript is essential for interactive front-end web development.
-            It is important to use that you understand the concepts and how to search for assistant resources when needed. 
-            You have 180 seconds to complete 4 questions. 
-            Each time you collect the wrong answer, there will be 10 seconds time deduction. 
-            Click start when you are ready.  
-            <br/>
-            Do your best! 
-        </p>
-        <!-- div title and button to start!! after user click btn #starHere then show question and 4 choices answer buttons-->
-        <button type="button" class="btn btn-success" id= "startButtonEl">Start Quiz</button>
-      </div> 
+        <div class="jumbotron" id="instrPage">
+            <h1 class="display-4">JavaScript Assessment</h1>
+            <p>
+                Since you have been studying for JavaScript, now it is a time to test your understanding.
+                JavaScript is essential for interactive front-end web development.
+                It is important to use that you understand the concepts and how to search for assistant resources when
+                needed.
+                You have 180 seconds to complete 4 questions.
+                Each time you collect the wrong answer, there will be 10 seconds time deduction.
+                Click start when you are ready.
+                <br />
+                Do your best!
+            </p>
+            <!-- div title and button to start!! after user click btn #starHere then show question and 4 choices answer buttons-->
+            <button type="button" class="btn btn-success" id="startButtonEl">Start Quiz</button>
+        </div>
 
-      <!-- dispear instruction page-->
-
-
-      <!-- display questions and btn choices-->
+        <!-- dispear instruction page-->
 
 
-    <div class="jumbotron" id= "codeQuests">
-        <h2 class="display-4" id= "questionChoices"></h2>
-        <div class="btn-group" id="ansChoices"></div>
-
-        <button type="button" class="btn btn-success" id= "0">Start Here</button>
-        <button type="button" class="btn btn-success" id= "1">Start Here</button>
-        <button type="button" class="btn btn-success" id= "2">Start Here</button>
-        <button type="button" class="btn btn-success" id= "3">Start Here</button>
-    </div>
-    <!--div answer -->
-     <div class="divAlert" id="divAlertAns">Your answer is </div>
+        <!-- display questions and btn choices-->
 
 
+        <div class="d-none jumbotron" id="codeQuests">
+            <h2 class="display-4" id="questionChoices"></h2>
+            <div class="btn-group" id="ansChoices"></div>
 
-   
-
-
+            <button type="button" class="btn btn-success" id="0">Start Here</button>
+            <button type="button" class="btn btn-success" id="1">Start Here</button>
+            <button type="button" class="btn btn-success" id="2">Start Here</button>
+            <button type="button" class="btn btn-success" id="3">Start Here</button>
+        </div>
+        <!--div answer -->
+        <!-- <div class="divAlert" id="divAlertAns">Your answer is </div> -->
+        <div class="jumbotron d-none" id="totalScores">
+            <h3>Finished</h3>
+            <p>Total scores is: <span id="myScore"></span></p>
+            <h4 id="scoreResult">points</h4>
+            <form>
+                <div class="form-group">
+                    <label for="inputUser">Please enter your initials</label>
+                    <input type="text" class="form-control" id="userInitials" placeholder="Your Initials!">
+                </div>
+                <button type="submit" class="btn btn-primary" id="sumitBtn">Submit</button>
+            </form>
+        </div>
     </div>
 
     <script src="script.js"></script>
@@ -66,9 +74,3 @@
 </body>
 
 </html>
-
-
-
-
-
-

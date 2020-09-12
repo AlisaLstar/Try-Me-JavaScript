@@ -66,12 +66,11 @@ var currentQuestion;
 var availableQuestions = [...questions];
 var questionsIndex = 0;
 var questionCounter = 0;
-var acceptingAnswer = true;
+var acceptingAnswer = false;
 var correctAnswer = 10;
 var time = 120;
 var scores = 0;
 var secondElapsed;
-var toDisplayAnswer = document.querySelectorAll("#ansChoices");
 var timer = addEventListener("#click", startBtn);
 var startQuizEl = document.getElementById("instrPage");
 var codeQuestionsEl = document.getElementById("codeQuests");
@@ -139,13 +138,13 @@ function getQuestion() {
   currentQuestion = questions[questionIndex];
   questionChoicesEl.textContent = currentQuestion.questions;
 
-  for (var i = 0; i < currentQuestion.answer.length; i++) {
-    var oldButtonEl = document.getElementById(i);
-    var newButtonEl = oldButtonEl.cloneNode(true);
+  for (var i = 0; i < 4; i++) {
+    var oldButtonEl = document.getElementById("~");
+    // var newButtonEl = oldButtonEl.cloneNode(true);
 
-    oldButtonEl.parentNode.replaceChild(newButtonEl, oldButtonEl);
+    // oldButtonEl.parentNode.replaceChild(newButtonEl, oldButtonEl);
 
-    newButtonEl.textContent = currentQuestion.answer[i].text;
+    oldButtonEl.textContent = currentQuestion.answer[i].text;
     newButtonEl.addEventListener("click", selectAnswer(questionIndex, i));
   
   }
@@ -153,11 +152,11 @@ function getQuestion() {
 
 //prompt correct or incorrect answer
 function selectAnswer(questionIndex, answerIndex) {
-  return function onSelectAnswerClick() {
+  // return function onSelectAnswerClick() {
     if (currentQuestion.answer[answerIndex].result) {
      var answerText = document.getElementById("divAlertAns");
    
-      score ++;
+      // score ++;
       answerText = "Correct!";
       
     } else {
@@ -168,7 +167,7 @@ function selectAnswer(questionIndex, answerIndex) {
     // questions.splice(questionIndex, 1);
     questionsIndex++;
     getQuestion();
-  };
+  // };
 }
 
 //timeout if there is no more questions
@@ -218,7 +217,7 @@ function submitInitials(event) {
 
 //add event listener
 
-resultUserEl.style.display = "none";
+// resultUserEl.style.display = "none";
 codeQuestionsEl.style.display = "none";
 startButtonEl.addEventListener("click", startBtn);
 
