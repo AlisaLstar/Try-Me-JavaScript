@@ -53,7 +53,8 @@ var questions = [
 ];
 
 var startButtonEl = document.getElementById("startButtonEl");
-var submitBtnEl = document.getElementById("thankYou");
+var submitBtnEl = document.getElementById("sumitBtn");
+var thankYouEl = document.getElementById("thankYou");
 var questionIndex = 0;
 var questionCounter = 0;
 var acceptingAnswer = false;
@@ -61,11 +62,7 @@ var correctAnswer = 10;
 var time = 120;
 var score = 0;
 var secondElapsed;
-<<<<<<< HEAD
 var toDisplayAnswer = document.querySelectorAll("#ansChoices");
-=======
-var timer = addEventListener("#click", startBtn);
->>>>>>> ea6d35368c7105259ae8ce27b827557fa6a29ffa
 var startQuizEl = document.getElementById("instrPage");
 var codeQuestionsEl = document.getElementById("codeQuests");
 var resultUserEl = document.getElementById("divAlertAns");
@@ -82,7 +79,7 @@ function startBtn() {
   // console.log("startbutton");
   startQuizEl.classList.add("d-none");
   codeQuestionsEl.classList.remove("d-none");
-  document.getElementById("thankYou").classList.add("d-none");
+  thankYouEl.classList.add("d-none");
   getQuestion();
   startTimer();
 }
@@ -119,7 +116,6 @@ function getQuestion() {
     var questionChoicesEl = document.getElementById("questionChoices");
     questionIndex = Math.floor(Math.random() * questions.length);
 
-<<<<<<< HEAD
     currentQuestion = questions[questionIndex];
     questionChoicesEl.textContent = currentQuestion.questions;
 
@@ -129,22 +125,10 @@ function getQuestion() {
       buttonEl.textContent = currentQuestion.answer[i].text;
       buttonEl.addEventListener("click", selectAnswer);
     }
-=======
-  for (var i = 0; i < 4; i++) {
-    var oldButtonEl = document.getElementById("~");
-    // var newButtonEl = oldButtonEl.cloneNode(true);
-
-    // oldButtonEl.parentNode.replaceChild(newButtonEl, oldButtonEl);
-
-    oldButtonEl.textContent = currentQuestion.answer[i].text;
-    newButtonEl.addEventListener("click", selectAnswer(questionIndex, i));
-  
->>>>>>> ea6d35368c7105259ae8ce27b827557fa6a29ffa
   }
 }
 
 //prompt correct or incorrect answer
-<<<<<<< HEAD
 function selectAnswer(event) {
   var buttenClicked = event.target;
   var answerIndex = parseInt(buttenClicked.getAttribute("id"));
@@ -161,25 +145,6 @@ function selectAnswer(event) {
   questions.splice(questionIndex, 1);
   questionIndex++;
   getQuestion();
-=======
-function selectAnswer(questionIndex, answerIndex) {
-  // return function onSelectAnswerClick() {
-    if (currentQuestion.answer[answerIndex].result) {
-     var answerText = document.getElementById("divAlertAns");
-   
-      // score ++;
-      answerText = "Correct!";
-      
-    } else {
-      answerText = "Wrong!";
-      secondElapsed += 10;
-     
-    }
-    // questions.splice(questionIndex, 1);
-    questionsIndex++;
-    getQuestion();
-  // };
->>>>>>> ea6d35368c7105259ae8ce27b827557fa6a29ffa
 }
 
 //timeout if there is no more questions
@@ -204,7 +169,7 @@ function resultPage() {
 function submitInitials(event) {
   event.preventDefault();
   // document.getElementById("thankYou").classList.add("d-none");
-
+  thankYouEl.classList.remove("d-none");
   var userInitials = document.getElementById("userInitials").value;
 
   if (userInitials.trim() == '') {
@@ -226,16 +191,12 @@ function submitInitials(event) {
     scoresArray.push(newHighScore);
     scoresArray.sort(function (a, b) { return b.score - a.score });
     localStorage.setItem("localHighScores", JSON.stringify(scoresArray));
+    
   }
   
 }
 
 
-<<<<<<< HEAD
 //add event listener
-=======
-// resultUserEl.style.display = "none";
-codeQuestionsEl.style.display = "none";
->>>>>>> ea6d35368c7105259ae8ce27b827557fa6a29ffa
 startButtonEl.addEventListener("click", startBtn);
 sumitBtn.addEventListener("click", submitInitials);
